@@ -37,12 +37,16 @@ code_quality:
 maven_build:
   stage: build
   script: "mvn package -B"
+  only:
+    - master
   artifacts:
     paths:
       - target/*.jar
 
 deploy:
   stage: deploy
+  only:
+    - master
   script:
-    - kill $(ps -ef | grep "java" | grep -v "grep" | awk '{print $2}')
+    - if pgrep java; then pkill java; fi
     - java -jar target/LFG-0.0.1-SNAPSHOT.jar &
