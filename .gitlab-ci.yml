@@ -1,0 +1,48 @@
+image: maven:3-jdk-11
+
+stages:
+  - test
+  - code_quality
+  - build
+  - deploy
+
+include:
+  - template: Code-Quality.gitlab-ci.yml
+
+test:
+  stage: test
+  script: mvn test
+  artifacts:
+    paths:
+      - target/surefire-reports/TEST-*.xml
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+code_coverage:
+  stage: code_quality
+  script: 
+    - mvn package
+    - cat target/site/jacoco/index.html
+  artifacts:
+    paths:
+      - target/site/jacoco/index.html
+    
+code_quality:
+  stage: code_quality
+  artifacts:
+    paths: [gl-code-quality-report.json]
+
+
+maven_build:
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - target/*.jar
+
+deploy:
+  stage: deploy
+  script:
+    - kill $(ps -ef | grep "java" | grep -v "grep" | awk '{print $2}')
+    - java -jar target/LFG-0.0.1-SNAPSHOT.jar &
