@@ -2,7 +2,6 @@
 package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,15 +14,15 @@ public class User {
     private Integer id;
 
     private String name;
-    private String firstname;
+    private String firstName;
 
     public User() {
     }
 
-    public User(Integer id, String name, String firstname) {
+    public User(Integer id, String name, String firstName) {
         this.id = id;
         this.name = name;
-        this.firstname = firstname;
+        this.firstName = firstName;
     }
 
     public Integer getId(){
@@ -43,11 +42,11 @@ public class User {
     }
 
     public String getfirstName(){
-        return firstname;
+        return firstName;
     }
 
-    public void setfirstName(String firstname){
-        this.firstname = firstname;
+    public void setfirstName(String firstName){
+        this.firstName = firstName;
     }
 
 }

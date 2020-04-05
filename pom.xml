@@ -48,6 +48,14 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52 -->
+		<dependency>
+			<groupId>com.vladmihalcea</groupId>
+			<artifactId>hibernate-types-43</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
     </dependencies>
 
 	<build>
