@@ -1,10 +1,12 @@
 package ch.LFG.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
+
+@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "match")
 public class Match {
     @Id
     @OneToOne(optional=false)
@@ -16,19 +18,19 @@ public class Match {
     @OneToOne(optional=false)
     @JoinColumn(name="GroupId")
     @Column(name="groupId")
-    private GroupProfil group;
+    private Group group;
 
     @Column(columnDefinition = "boolean default null")
-    private Boolean userAccept;
+    private Boolean userStatus;
     @Column(columnDefinition = "boolean default null")
-    private Boolean groupAccept;
+    private Boolean groupStatus;
 
     public Match() {}
-    public Match(User user, GroupProfil group) {
+    public Match(User user, Group group) {
         this.user = user;
         this.group = group;
-        this.userAccept = null;
-        this.groupAccept = null;
+        this.userStatus = null;
+        this.groupStatus = null;
     }
 
     public User getUser() {
@@ -39,27 +41,27 @@ public class Match {
         this.user = user;
     }
 
-    public GroupProfil getGroup() {
+    public Group getGroup() {
         return group;
     }
 
-    public void setGroup(GroupProfil group) {
+    public void setGroup(Group group) {
         this.group = group;
     }
 
-    public Boolean getUserAccept() {
-        return userAccept;
+    public Boolean getUserStatus() {
+        return userStatus;
     }
 
-    public void setUserAccept(Boolean userAccept) {
-        this.userAccept = userAccept;
+    public void setUserStatus(Boolean userStatus) {
+        this.userStatus = userStatus;
     }
 
-    public Boolean getGroupAccept() {
-        return groupAccept;
+    public Boolean getGroupStatus() {
+        return groupStatus;
     }
 
-    public void setGroupAccept(Boolean groupAccept) {
-        this.groupAccept = groupAccept;
+    public void setGroupStatus(Boolean groupStatus) {
+        this.groupStatus = groupStatus;
     }
 }

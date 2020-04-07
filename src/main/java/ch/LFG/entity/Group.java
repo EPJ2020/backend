@@ -8,29 +8,31 @@ import org.hibernate.annotations.TypeDef;
 import javax.persistence.*;
 import java.util.List;
 
+
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "user")
+@Table(name = "group")
 @TypeDef(
         name = "list-array",
         typeClass = ListArrayType.class
 )
-public class User {
+public class Group {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int groupId;
+
     @OneToOne(optional=false)
     @JoinColumn(name="id")
-    @Column(name="userid")
-    private Login user;
+    @Column(name="ownerid")
+    private User owner;
 
-    @Column(name="lastname")
-    private String lastName;
-    @Column(name="firstname")
-    private String firstName;
+    private String name;
     private String description;
     @Column(name="isactive")
     private Boolean isActive;
 
+    // See https://mvnrepository.com/artifact/com.vladmihalcea/hibernate-types-52
     @Type(type = "list-array" )
     @Column(
             name = "tags",
@@ -38,39 +40,40 @@ public class User {
     )
     private List<String> tags;
 
-    public User() {}
+    public Group() {}
 
-    public User(Login user, String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
-        this.user = user;
-        this.lastName = lastName;
-        this.firstName = firstName;
+    public Group(int groupId, User owner, String name, String description, Boolean isActive, List<String> tags) {
+        this.groupId = groupId;
+        this.owner = owner;
+        this.name = name;
         this.description = description;
         this.isActive = isActive;
         this.tags = tags;
+
     }
 
-    public User getUser() {
-        return user;
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
