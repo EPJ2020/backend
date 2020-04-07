@@ -49,11 +49,11 @@ public class User {
         this.tags = tags;
     }
 
-    public User getUser() {
+    public Login getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Login user) {
         this.user = user;
     }
 

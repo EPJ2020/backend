@@ -12,7 +12,7 @@ public class SocialSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "skillid")
-    private int skillId;
+    private long skillId;
     @Column(name = "skillname")
     private String skillName;
 
@@ -22,11 +22,11 @@ public class SocialSkill {
         this.skillName = skillName;
     }
 
-    public int getSkillId() {
+    public long getSkillId() {
         return skillId;
     }
 
-    public void setSkillId(int skillId) {
+    public void setSkillId(long skillId) {
         this.skillId = skillId;
     }
 

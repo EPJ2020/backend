@@ -11,7 +11,7 @@ public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "username")
     private String userName;
@@ -21,17 +21,17 @@ public class Login {
     public Login() {
     }
 
-    public Login(int id, String userName, String password) {
+    public Login(long id, String userName, String password) {
         this.id = id;
         this.userName = userName;
         this.password = password;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return id;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.id = userId;
     }
 

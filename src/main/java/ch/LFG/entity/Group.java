@@ -20,7 +20,7 @@ public class Group {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int groupId;
+    private long groupId;
 
     @OneToOne(optional=false)
     @JoinColumn(name="id")
@@ -42,7 +42,7 @@ public class Group {
 
     public Group() {}
 
-    public Group(int groupId, User owner, String name, String description, Boolean isActive, List<String> tags) {
+    public Group(long groupId, User owner, String name, String description, Boolean isActive, List<String> tags) {
         this.groupId = groupId;
         this.owner = owner;
         this.name = name;
@@ -52,7 +52,7 @@ public class Group {
 
     }
 
-    public int getGroupId() {
+    public long getGroupId() {
         return groupId;
     }
 
