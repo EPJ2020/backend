@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MatcherService {
+public class MatchService {
     private UserService userService;
     private GroupService groupServie;
 

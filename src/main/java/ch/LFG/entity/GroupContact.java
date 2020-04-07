@@ -10,9 +10,11 @@ import javax.persistence.*;
 public class GroupContact {
 
     @Id
+    @Column(name = "groupid")
+    private long groupId;
+
     @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="groupid")
+    @PrimaryKeyJoinColumn(name="groupid", referencedColumnName="groupId")
     private Group group;
 
     @Column(name="email")

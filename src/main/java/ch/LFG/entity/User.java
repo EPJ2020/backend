@@ -38,6 +38,12 @@ public class User {
     )
     private List<String> tags;
 
+    @OneToMany(mappedBy = "user")
+    List<Match> matches;
+
+    @OneToMany(mappedBy = "user")
+    List<SocialSkillRating> ratings;
+
     public User() {}
 
     public User(Login user, String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
@@ -95,5 +101,21 @@ public class User {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
+    }
+
+    public List<SocialSkillRating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<SocialSkillRating> ratings) {
+        this.ratings = ratings;
     }
 }

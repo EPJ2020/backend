@@ -8,16 +8,22 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "match")
 public class Match {
-    @Id
-    @OneToOne(optional=false)
-    @JoinColumn(name="UserId")
-    @Column(name="userid")
-    private User user;
+// Composite Key? -> https://www.baeldung.com/jpa-many-to-many  Abschnitt 4
+//    @EmbeddedId
+//    @Column(name = "matchid")
+//    private MatchKey matchId;
 
     @Id
-    @OneToOne(optional=false)
-    @JoinColumn(name="GroupId")
-    @Column(name="groupId")
+    @Column(name="matchid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long matchId;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "groupId")
     private Group group;
 
     @Column(columnDefinition = "boolean default null")

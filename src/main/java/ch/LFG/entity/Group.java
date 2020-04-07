@@ -40,6 +40,9 @@ public class Group {
     )
     private List<String> tags;
 
+    @OneToMany(mappedBy = "group")
+    List<Match> matches;
+
     public Group() {}
 
     public Group(long groupId, User owner, String name, String description, Boolean isActive, List<String> tags) {
@@ -98,5 +101,17 @@ public class Group {
 
     public void setTags(List<String> tags) {
         this.tags = tags;
+    }
+
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 }

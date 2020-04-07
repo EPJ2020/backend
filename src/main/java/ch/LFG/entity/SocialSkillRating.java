@@ -8,17 +8,20 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "socialskillrating")
 public class SocialSkillRating {
-    @Id
-    @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="groupid")
-    private SocialSkill skill;
 
     @Id
-    @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="userid")
+    @Column(name="ratingId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long ratingId;
+
+    @ManyToOne
+    @JoinColumn(name = "skillid")
+    private SocialSkill skill;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
+
     private int rating;
 
     public SocialSkillRating() {
@@ -53,4 +56,6 @@ public class SocialSkillRating {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+
 }

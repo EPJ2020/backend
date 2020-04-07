@@ -10,10 +10,13 @@ import javax.persistence.*;
 public class UserContact {
 
     @Id
+    @Column(name = "userid")
+    private long userId;
+
     @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="userid")
+    @PrimaryKeyJoinColumn(name="userid", referencedColumnName="userid")
     private User user;
+
 
     @Column(name="email")
     private String eMail;
