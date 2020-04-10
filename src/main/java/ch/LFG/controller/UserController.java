@@ -3,14 +3,11 @@ package ch.LFG.controller;
 import ch.LFG.entity.Group;
 import ch.LFG.entity.Login;
 import ch.LFG.entity.User;
-import ch.LFG.service.SessionService;
-import ch.LFG.service.UserService;
+import ch.LFG.loginService.SessionService;
+import ch.LFG.entityService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
-import static org.springframework.beans.BeanUtils.copyProperties;
 
 
 @RestController
@@ -22,52 +19,53 @@ public class UserController {
     @Autowired
     private SessionService sessionService;
 
+    @PostMapping
+    @RequestMapping(value="/Login/{id}", method = RequestMethod.PUT)
+    public void registerUser(@PathVariable Long id, @RequestBody Login login) {
+        sessionService.registerUser(login);
+    }
 
     @PostMapping
-    public void registerUser(Login user) {
+    @RequestMapping(value="/User/{id}", method = RequestMethod.PUT)
+    public void setUserProfil(@PathVariable Long id, @RequestBody User user) {
+        userService.updateUserProfil(user);
     }
+
     @PostMapping
-    public void updateUser(Login user) {
-    }
-    @PostMapping
-    public void setUserProfil(User user) {
-    }
-    @PostMapping
-    public void updateUserProfil(User user) {
+    @RequestMapping(value="/User/{id}", method = RequestMethod.PATCH)
+    public void updateUserProfil(@PathVariable Long id, @RequestBody User user) {
+        userService.updateUserProfil(user);
     }
 
     @GetMapping
-    @RequestMapping("{id}")
-    public List<Group> getUserProfil(@PathVariable Long userId) {
-        return userService.getAllGroups(userId);
+    @RequestMapping(value="/User/{id}", method = RequestMethod.GET)
+    public User getUserProfil(@PathVariable Long id, @RequestBody User user) {
+        return userService.getUserProfil(user);
     }
 
     @GetMapping
-    public List<User> getAllGroups(long userId) {
-        return null;
+    @RequestMapping(value="/User/Group/{id}", method = RequestMethod.GET)
+//    @ResponseBody
+    public List<Group> getAllGroups(@PathVariable Long id, @RequestBody User user) {
+        return userService.getAllGroups(user);
     }
 
     @GetMapping
-    public List<User> getPossibleMatches(long userId) {
-        return null;
+    @RequestMapping(value="/User/PossibleMatches/{id}", method = RequestMethod.GET)
+    public List<Group> getPossibleMatches(@PathVariable Long id, @RequestBody User user) {
+        return userService.getPossibleMatches(user);
     }
 
     @GetMapping
-    public List<User> getMatches(long userId) {
-        return null;
+    @RequestMapping(value="/User/Matches/{id}", method = RequestMethod.GET)
+    public List<Group> getMatches(@PathVariable Long id, @RequestBody User user) {
+        return userService.getMatches(user);
     }
 
 
     // Bsp Methoden
-
-//    @RequestMapping(value="{id}", method = RequestMethod.DELETE) //requires the HTTP word delete with an id and this endpoint
-//    public void delete(@PathVariable Long id){
-//        //need to check for childrecords before deleting -- cascade, db doesnt allow if there are children
-//        sessionRepository.deleteById(id);
-//    }
-//
 //    @RequestMapping(value="{id}", method = RequestMethod.PUT) // PUT for overwriting all existing attributes, PATCH for only overwriting a few
-//    public Session update (@PathVariable Long id, @RequestBody Session session) {
+//    public Session update(@PathVariable Long id, @RequestBody Session session) {
 //        // check if all attributes are there to initiate a Session - needs validation otherwise return 400 bad payload
 //        Session existingSession = sessionRepository.getOne(id);
 //        copyProperties(session, existingSession, "session_id");

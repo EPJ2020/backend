@@ -1,7 +1,6 @@
-package ch.LFG.service;
+package ch.LFG.entityService;
 
 import ch.LFG.entity.User;
-import ch.LFG.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,7 +19,7 @@ class UserServiceTest {
     private UserRepository userRepository;
 
     @InjectMocks
-    private ch.LFG.service.UserService userService;
+    private ch.LFG.entityService.UserService userService;
 
     @Test
     void findAll() {

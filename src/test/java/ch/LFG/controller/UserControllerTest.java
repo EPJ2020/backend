@@ -1,7 +1,7 @@
 package ch.LFG.controller;
 
 import ch.LFG.entity.User;
-import ch.LFG.service.UserService;
+import ch.LFG.entityService.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
