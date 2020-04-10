@@ -16,7 +16,8 @@ public class SocialSkill {
     private long skillId;
     @Column(name = "skillname")
     private String skillName;
-    @OneToMany(mappedBy = "socialskill")
+
+    @OneToMany(mappedBy = "socialSkill")
     List<SocialSkillRating> ratings;
 
 

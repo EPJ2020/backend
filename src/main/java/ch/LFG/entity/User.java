@@ -18,10 +18,12 @@ import java.util.List;
 public class User {
 
     @Id
-    @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="userid")
-    private Login user;
+    @Column(name = "userid")
+    private long userId;
+
+    @OneToOne//(optional=false)
+    @PrimaryKeyJoinColumn(name="userid", referencedColumnName="userid")
+    private Login login;
 
     @Column(name="lastname")
     private String lastName;
@@ -41,13 +43,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Match> matches;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "socialSkill")
     List<SocialSkillRating> ratings;
 
     public User() {}
 
-    public User(Login user, String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
-        this.user = user;
+    public User(Login login, String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
+        this.login = login;
         this.lastName = lastName;
         this.firstName = firstName;
         this.description = description;
@@ -56,11 +58,11 @@ public class User {
     }
 
     public Login getUser() {
-        return user;
+        return login;
     }
 
-    public void setUser(Login user) {
-        this.user = user;
+    public void setUser(Login login) {
+        this.login = login;
     }
 
     public String getLastName() {
@@ -117,5 +119,13 @@ public class User {
 
     public void setRatings(List<SocialSkillRating> ratings) {
         this.ratings = ratings;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

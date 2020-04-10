@@ -16,7 +16,7 @@ public class SocialSkillRating {
 
     @ManyToOne
     @JoinColumn(name = "skillid")
-    private SocialSkill skill;
+    private SocialSkill socialSkill;
 
     @ManyToOne
     @JoinColumn(name = "userId")
@@ -27,18 +27,18 @@ public class SocialSkillRating {
     public SocialSkillRating() {
     }
 
-    public SocialSkillRating(SocialSkill skill, User user, int rating) {
-        this.skill = skill;
+    public SocialSkillRating(SocialSkill socialSkill, User user, int rating) {
+        this.socialSkill = socialSkill;
         this.user = user;
         this.rating = rating;
     }
 
     public SocialSkill getSkill() {
-        return skill;
+        return socialSkill;
     }
 
-    public void setSkill(SocialSkill skill) {
-        this.skill = skill;
+    public void setSkill(SocialSkill socialSkill) {
+        this.socialSkill = socialSkill;
     }
 
     public User getUser() {

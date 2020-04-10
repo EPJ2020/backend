@@ -23,8 +23,7 @@ public class Group {
     private long groupId;
 
     @OneToOne(optional=false)
-    @JoinColumn(name="id")
-    @Column(name="ownerid")
+    @JoinColumn(name="userid")
     private User owner;
 
     private String name;

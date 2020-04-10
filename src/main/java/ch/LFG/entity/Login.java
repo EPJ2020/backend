@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+    @Column(name = "userid")
+    private long userId;
 
     @Column(name = "username")
     private String userName;
@@ -21,18 +21,18 @@ public class Login {
     public Login() {
     }
 
-    public Login(long id, String userName, String password) {
-        this.id = id;
+    public Login(long userId, String userName, String password) {
+        this.userId = userId;
         this.userName = userName;
         this.password = password;
     }
 
     public long getUserId() {
-        return id;
+        return userId;
     }
 
     public void setUserId(long userId) {
-        this.id = userId;
+        this.userId = userId;
     }
 
     public String getUserName() {

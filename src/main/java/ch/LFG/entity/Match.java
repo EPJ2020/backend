@@ -8,6 +8,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "match")
 public class Match {
+
 // Composite Key? -> https://www.baeldung.com/jpa-many-to-many  Abschnitt 4
 //    @EmbeddedId
 //    @Column(name = "matchid")

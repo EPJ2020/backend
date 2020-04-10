@@ -15,28 +15,28 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-    @Mock
-    private UserRepository userRepository;
-
-    @InjectMocks
-    private ch.LFG.entityService.UserService userService;
-
-    @Test
-    void findAll() {
-        final User user1 = new User(1, "Abrams", "william");
-
-        final User user2 = new User(2, "Lord", "Wilhelm");
-
-        List<User> users = new ArrayList<>();
-        users.add(user1);
-        users.add(user2);
-
-        given(userRepository.findAll()).willReturn(users);
-
-        List<User> expected = userService.getAll();
-
-        assertEquals(expected, users);
-    }
+//    @Mock
+//    private UserRepository userRepository;
+//
+//    @InjectMocks
+//    private ch.LFG.entityService.UserService userService;
+//
+//    @Test
+//    void findAll() {
+//        final User user1 = new User(1, "Abrams", "william");
+//
+//        final User user2 = new User(2, "Lord", "Wilhelm");
+//
+//        List<User> users = new ArrayList<>();
+//        users.add(user1);
+//        users.add(user2);
+//
+//        given(userRepository.findAll()).willReturn(users);
+//
+//        List<User> expected = userService.getAll();
+//
+//        assertEquals(expected, users);
+//    }
 
     //Future Tests
 
