@@ -26,7 +26,7 @@ code_coverage:
     - cat target/site/jacoco/index.html
   artifacts:
     paths:
-      - target/site/jacoco/index.html
+      - target/site/jacoco/
     
 code_quality:
   stage: code_quality
