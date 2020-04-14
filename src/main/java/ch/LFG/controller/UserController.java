@@ -15,6 +15,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    private boolean b;
 
     //further commands see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#OpenAPIDefinition
     @Operation(summary = "Get Users", description = "Get list of users")
@@ -29,9 +30,16 @@ public class UserController {
         return userService.getUserProfil(id);
     }
 
-    @RequestMapping(value="/set", method = RequestMethod.PUT)
-    public void setUserProfil(@RequestBody Appuser user) {
-        userService.setUserProfil(user);
+    @Operation(summary = "Temporary test Implementation")
+    @RequestMapping(value="/bool", method = RequestMethod.PUT)
+    public void setBool(@RequestBody Boolean b) {
+        this.b = b;
+    }
+
+    @Operation(summary = "Temporary test Implementation")
+    @RequestMapping(value="/bool", method = RequestMethod.GET)
+    public boolean getBool() {
+        return this.b;
     }
 
 
