@@ -30,6 +30,12 @@ public class UserController {
         return userService.getUserProfil(id);
     }
 
+    @Operation(summary = "Create new User", description = "Create new User")
+    @RequestMapping(value="/set", method = RequestMethod.PUT)
+    public void setUserProfil(@RequestBody Appuser user) {
+        userService.setUserProfil(user);
+    }
+
     @Operation(summary = "Temporary test Implementation")
     @RequestMapping(value="/bool", method = RequestMethod.PUT)
     public void setBool(@RequestBody Boolean b) {
