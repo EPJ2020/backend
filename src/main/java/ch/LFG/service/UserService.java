@@ -1,6 +1,6 @@
 package ch.LFG.service;
 
-import ch.LFG.entity.User;
+import ch.LFG.entity.Appuser;
 import ch.LFG.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAll(){
+    public List<Appuser> getAll(){
         return userRepository.findAll();
     }
 }
