@@ -1,7 +1,13 @@
 package ch.LFG.controller;
 
-import ch.LFG.entity.User;
+import ch.LFG.entity.Appuser;
 import ch.LFG.service.UserService;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,10 +15,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 class UserControllerTest {
@@ -23,28 +28,38 @@ class UserControllerTest {
     @InjectMocks
     private UserController userController;
 
-    @Test
+
+    @org.junit.jupiter.api.Test
     void findAll() {
-        final User user1 = new User();
-        user1.setName("Abrams");
-        user1.setfirstName("William");
-        user1.setId(1);
+        Appuser user1 = new Appuser();
+        user1.setUserId(4);
+        user1.setFirstName("Max");
+        user1.setLastName("Musterman");
+        user1.setTags(Arrays.asList("aaa", "bbb"));
 
-        final User user2 = new User();
-        user2.setName("Lord");
-        user2.setfirstName("Wilhelm");
-        user2.setId(2);
+        Appuser user2 = new Appuser();
+        user1.setUserId(4);
+        user1.setFirstName("Hans");
+        user1.setLastName("Peter");
+        user1.setTags(Arrays.asList("ccc", "ddd"));
 
-        List<User> users = new ArrayList<>();
+        List<Appuser> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
 
         given(userController.findAll()).willReturn(users);
 
-        List<User> expected = userService.getAll();
+        List<Appuser> expected = userService.getAll();
 
         assertEquals(expected, users);
+
     }
 
+    @org.junit.jupiter.api.Test
+    void getUserProfile() {
+    }
 
+    @org.junit.jupiter.api.Test
+    void setUserProfil() {
+    }
 }
