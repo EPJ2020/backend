@@ -17,5 +17,9 @@ public class UserService {
     public List<Appuser> getAll(){
         return userRepository.findAll();
     }
+
+    public Appuser getUserProfil(long id){ return userRepository.getOne(id);}
+
+    public void setUserProfil(Appuser user){ userRepository.save(user);}
 }
 
