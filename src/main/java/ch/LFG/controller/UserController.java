@@ -36,6 +36,13 @@ public class UserController {
         userService.setUserProfil(user);
     }
 
+    @Operation(summary = "Update User", description = "Update existing user")
+    @RequestMapping(value="/update", method = RequestMethod.PATCH)
+    public Appuser updateUserProfil(@RequestBody Appuser user) {
+        Appuser updatedUser = userService.updateUserProfile(user, user.getUserId());
+        return updatedUser;
+    }
+
     @Operation(summary = "Temporary test Implementation")
     @RequestMapping(value="/bool", method = RequestMethod.PUT)
     public void setBool(@RequestBody Boolean b) {

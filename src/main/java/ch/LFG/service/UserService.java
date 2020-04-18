@@ -21,5 +21,7 @@ public class UserService {
     public Appuser getUserProfil(long id){ return userRepository.getOne(id);}
 
     public void setUserProfil(Appuser user){ userRepository.save(user);}
+
+    public Appuser updateUserProfile(Appuser user, long id){ userRepository.save(user); return userRepository.getOne(id);}
 }
 

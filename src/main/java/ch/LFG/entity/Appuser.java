@@ -1,20 +1,24 @@
-
 package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@TypeDef(
-        name = "list-array",
-        typeClass = ListArrayType.class
-)
+@TypeDefs({
+        @TypeDef(
+                name = "string-array",
+                typeClass = StringArrayType.class
+        )
+})
 public class Appuser {
 
     @Id
@@ -28,18 +32,17 @@ public class Appuser {
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
-
-    @Type(type = "list-array")
+    @Type(type = "string-array")
     @Column(
             name = "tags",
             columnDefinition = "text[]"
     )
-    private List<String> tags;
+    private String[] tags;
 
     public Appuser() {
     }
 
-    public Appuser(String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
+    public Appuser( String lastName, String firstName, String description, Boolean isActive, String[] tags ) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.description = description;
@@ -79,12 +82,12 @@ public class Appuser {
         isActive = active;
     }
 
-    public List<String> getTags() {
+    public String[] getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
-        this.tags = tags;
+    public void setTags(String[] tags) {
+        this.tags=tags;
     }
 
     public long getUserId() {
