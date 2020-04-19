@@ -35,13 +35,13 @@ class UserControllerTest {
         user1.setUserId(4);
         user1.setFirstName("Max");
         user1.setLastName("Musterman");
-        user1.setTags(Arrays.asList("aaa", "bbb"));
+        //user1.setTags(Arrays.asList("aaa", "bbb"));
 
         Appuser user2 = new Appuser();
         user1.setUserId(4);
         user1.setFirstName("Hans");
         user1.setLastName("Peter");
-        user1.setTags(Arrays.asList("ccc", "ddd"));
+        //user1.setTags(Arrays.asList("ccc", "ddd"));
 
         List<Appuser> users = new ArrayList<>();
         users.add(user1);
