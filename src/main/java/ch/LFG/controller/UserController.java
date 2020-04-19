@@ -20,7 +20,6 @@ public class UserController {
 
     private boolean b;
 
-
 //    @Operation(summary = "Create new Login", description = "Create new Login")
 //    @RequestMapping(value="/register", method = RequestMethod.PUT)
 //    public void registerUser(@RequestBody UserLogin user) {
@@ -54,9 +53,6 @@ public class UserController {
     }
 
 
-
-
-
 //    @Operation(summary = "Get Groups from User by userId", description = "Get all the groups of a user by his userId")
 //    @RequestMapping(value="/Groups/{id}", method = RequestMethod.GET)
 //    public List<Group> getAllGroups(@PathVariable Long id, @RequestBody Appuser user) {
@@ -75,8 +71,6 @@ public class UserController {
 //        return userService.getMatches(user);
 //    }
 
-
-
     @Operation(summary = "Temporary test Implementation")
     @RequestMapping(value="/bool", method = RequestMethod.PUT)
     public void setBool(@RequestBody Boolean b) {
@@ -88,6 +82,5 @@ public class UserController {
     public boolean getBool() {
         return this.b;
     }
-
 
 }
