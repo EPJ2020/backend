@@ -9,6 +9,7 @@ import org.hibernate.annotations.TypeDefs;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -18,19 +19,18 @@ import javax.persistence.Id;
                 typeClass = StringArrayType.class
         )
 })
-public class Appuser {
+public class Appgroup {
 
     @Id
-    @Column(name = "userid")
-    private long userId;
+    @Column(name = "groupid")
+    private long groupId;
 
-    @Column(name = "lastname")
-    private String lastName;
-    @Column(name = "firstname")
-    private String firstName;
+    private String name;
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
+    @ManyToOne
+    private Appuser owner;
     @Type(type = "string-array")
     @Column(
             name = "tags",
@@ -38,32 +38,18 @@ public class Appuser {
     )
     private String[] tags;
 
-    public Appuser() {
+    public Appgroup() {
     }
 
-    public long getUserId() {
-        return userId;
+    public long getGroupId() { return groupId; }
+
+    public void setGroupId(long groupId) { this.groupId = groupId; }
+
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public void setName(String name) { this.name = name; }
 
     public String getDescription() {
         return description;
