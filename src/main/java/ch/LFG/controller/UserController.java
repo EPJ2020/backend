@@ -15,17 +15,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-//    @Autowired
-//    private SessionService sessionService;
-
     private boolean b;
-
-
-//    @Operation(summary = "Create new Login", description = "Create new Login")
-//    @RequestMapping(value="/register", method = RequestMethod.PUT)
-//    public void registerUser(@RequestBody UserLogin user) {
-//        sessionService.registerUser(user);
-//    }
 
     //further commands see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#OpenAPIDefinition
     @Operation(summary = "Get Users", description = "Get list of all users")
@@ -52,30 +42,6 @@ public class UserController {
         Appuser updatedUser = userService.updateUserProfile(user, user.getUserId());
         return updatedUser;
     }
-
-
-
-
-
-//    @Operation(summary = "Get Groups from User by userId", description = "Get all the groups of a user by his userId")
-//    @RequestMapping(value="/Groups/{id}", method = RequestMethod.GET)
-//    public List<Group> getAllGroups(@PathVariable Long id, @RequestBody Appuser user) {
-//        return userService.getAllGroups(user);
-//    }
-//
-//    @Operation(summary = "Get possibleMatches for User", description = "Get all the possible Matches of a User by his userId")
-//    @RequestMapping(value="/PossibleMatches/{id}", method = RequestMethod.GET)
-//    public List<Group> getPossibleMatches(@PathVariable Long id, @RequestBody Appuser user) {
-//        return userService.getPossibleMatches(user);
-//    }
-//
-//    @Operation(summary = "Get Matches of User", description = "Get all the Matches of a User by his userId")
-//    @RequestMapping(value="/Matches/{id}", method = RequestMethod.GET)
-//    public List<Group> getMatches(@PathVariable Long id, @RequestBody Appuser user) {
-//        return userService.getMatches(user);
-//    }
-
-
 
     @Operation(summary = "Temporary test Implementation")
     @RequestMapping(value="/bool", method = RequestMethod.PUT)
