@@ -6,11 +6,10 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "Appuser")
+@Table(name = "appuser")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @TypeDefs({
         @TypeDef(
@@ -21,8 +20,13 @@ import javax.persistence.Id;
 public class Appuser {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")
     private long userId;
+
+    @OneToOne
+    @JoinColumn(name = "loginid")
+    private Userlogin login;
 
     @Column(name = "lastname")
     private String lastName;
@@ -31,6 +35,7 @@ public class Appuser {
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
+
     @Type(type = "string-array")
     @Column(
             name = "tags",
@@ -41,12 +46,30 @@ public class Appuser {
     public Appuser() {
     }
 
+    public Appuser(long userId, Userlogin login, String lastName, String firstName, String description, Boolean isActive, String[] tags) {
+        this.userId = userId;
+        this.login = login;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.description = description;
+        this.isActive = isActive;
+        this.tags = tags;
+    }
+
     public long getUserId() {
         return userId;
     }
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public Userlogin getLogin() {
+        return login;
+    }
+
+    public void setLogin(Userlogin login) {
+        this.login = login;
     }
 
     public String getLastName() {
@@ -86,7 +109,6 @@ public class Appuser {
     }
 
     public void setTags(String[] tags) {
-        this.tags=tags;
+        this.tags = tags;
     }
-
 }

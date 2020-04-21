@@ -6,12 +6,10 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "Appgroup")
+@Table(name = "appgroup")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @TypeDefs({
         @TypeDef(
@@ -22,15 +20,19 @@ import javax.persistence.ManyToOne;
 public class Appgroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "groupid")
     private long groupId;
+
+    @ManyToOne
+    @JoinColumn(name = "ownerid")
+    private Appuser owner;
 
     private String name;
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
-    @ManyToOne
-    private Appuser owner;
+
     @Type(type = "string-array")
     @Column(
             name = "tags",
@@ -44,6 +46,14 @@ public class Appgroup {
     public long getGroupId() { return groupId; }
 
     public void setGroupId(long groupId) { this.groupId = groupId; }
+
+    public Appuser getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Appuser owner) {
+        this.owner = owner;
+    }
 
     public String getName() {
         return name;
