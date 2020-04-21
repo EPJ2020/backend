@@ -5,8 +5,6 @@ import ch.LFG.repository.GroupRepository;
 import ch.LFG.repository.UserContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Optional;
-
 public class UserContactService {
     @Autowired
     private UserContactRepository userContactRepository;
