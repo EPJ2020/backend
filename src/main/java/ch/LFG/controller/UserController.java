@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 
 @RestController
@@ -21,12 +22,12 @@ public class UserController {
     @Operation(summary = "Get Users", description = "Get list of users")
     @GetMapping
     public List<Appuser> findAll() {
-        return userService.getAll();
+        return (List<Appuser>) userService.getAll();
     }
 
     @Operation(summary = "Get Users by id", description = "Get one user by his ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Appuser getUserProfile(@PathVariable int id){
+    public CompletableFuture<Appuser> getUserProfile(@PathVariable int id){
         return userService.getUserProfil(id);
     }
 

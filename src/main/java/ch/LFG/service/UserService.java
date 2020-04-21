@@ -2,9 +2,10 @@ package ch.LFG.service;
 
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
-import ch.LFG.repository.OurRepository;
+
+import ch.LFG.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.util.concurrent.CompletableFuture;
 public class UserService {
 
     @Autowired
-    private OurRepository<Appuser> userRepository;
+    private UserRepository userRepository;
 
     private MatcherService matchService;
     private GroupService groupService;

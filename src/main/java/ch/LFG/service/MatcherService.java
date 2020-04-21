@@ -3,6 +3,7 @@ package ch.LFG.service;
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
 import ch.LFG.entity.Match;
+import ch.LFG.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class MatcherService {
     private GroupService groupServie;
 
     @Autowired
-    private JpaRepository<Match, Long> matchRepository;
+    private MatchRepository matchRepository;
 
     private List<Match> calculateMatches(Appgroup group) {
         return null;

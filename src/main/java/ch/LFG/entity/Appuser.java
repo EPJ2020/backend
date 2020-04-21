@@ -1,25 +1,32 @@
-
 package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vladmihalcea.hibernate.type.array.ListArrayType;
+import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Entity
+@Entity(name = "Appuser")
+@Table(name = "appuser")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@TypeDef(
-        name = "list-array",
-        typeClass = ListArrayType.class
-)
+@TypeDefs({
+        @TypeDef(
+                name = "string-array",
+                typeClass = StringArrayType.class
+        )
+})
 public class Appuser {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")
     private long userId;
+
+    @OneToOne
+    @JoinColumn(name = "loginid")
+    private Userlogin login;
 
     @Column(name = "lastname")
     private String lastName;
@@ -29,22 +36,40 @@ public class Appuser {
     @Column(name = "isactive")
     private Boolean isActive;
 
-    @Type(type = "list-array")
+    @Type(type = "string-array")
     @Column(
             name = "tags",
             columnDefinition = "text[]"
     )
-    private List<String> tags;
+    private String[] tags;
 
     public Appuser() {
     }
 
-    public Appuser(String lastName, String firstName, String description, Boolean isActive, List<String> tags) {
+    public Appuser(long userId, Userlogin login, String lastName, String firstName, String description, Boolean isActive, String[] tags) {
+        this.userId = userId;
+        this.login = login;
         this.lastName = lastName;
         this.firstName = firstName;
         this.description = description;
         this.isActive = isActive;
         this.tags = tags;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public Userlogin getLogin() {
+        return login;
+    }
+
+    public void setLogin(Userlogin login) {
+        this.login = login;
     }
 
     public String getLastName() {
@@ -79,19 +104,11 @@ public class Appuser {
         isActive = active;
     }
 
-    public List<String> getTags() {
+    public String[] getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(String[] tags) {
         this.tags = tags;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 }

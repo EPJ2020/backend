@@ -1,14 +1,15 @@
 package ch.LFG.service;
 
 import ch.LFG.entity.UserContact;
-import ch.LFG.repository.OurRepository;
+import ch.LFG.repository.GroupRepository;
+import ch.LFG.repository.UserContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 public class UserContactService {
     @Autowired
-    private OurRepository<UserContact> userContactRepository;
+    private UserContactRepository userContactRepository;
 
     public void setContact(UserContact contact) {
         userContactRepository.save(contact);
