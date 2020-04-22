@@ -2,6 +2,8 @@ package ch.LFG.controller;
 
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
+import ch.LFG.entity.Userlogin;
+import ch.LFG.service.LoginService;
 import ch.LFG.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoginService loginService;
 
     //further commands see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#OpenAPIDefinition
     @Operation(summary = "Get User by id", description = "Get one user by his ID")
@@ -62,4 +66,9 @@ public class UserController {
         return null;
     }
 
+    @Operation(summary = "Create new Login", description = "Create new Login")
+    @RequestMapping( value = "/Register", method = RequestMethod.POST)
+    public void registerUser(@RequestBody Userlogin login) {
+        loginService.createUserLogin(login);
+    }
 }
