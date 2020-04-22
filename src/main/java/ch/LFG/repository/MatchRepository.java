@@ -1,8 +1,8 @@
 package ch.LFG.repository;
 
 import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
+import ch.LFG.entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Appuser, Long> {
+public interface MatchRepository extends JpaRepository<Match, Long> {
 }
