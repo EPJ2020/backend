@@ -1,26 +1,31 @@
 package ch.LFG.service;
 
-import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.GroupContact;
 import ch.LFG.repository.GroupContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.scheduling.annotation.Async;
+
+import java.util.concurrent.CompletableFuture;
 
 public class GroupContactService {
 
     @Autowired
     private GroupContactRepository groupContactRepository;
 
-    public GroupContact getContact(Appgroup group) {
-        return  null; //groupContactRepository.findOne(group.getGroupId());
+    @Async
+    public CompletableFuture<GroupContact> getContact(long groupId) {
+        return CompletableFuture.completedFuture(groupContactRepository.getOne(groupId));
     }
 
-    public void setContact(GroupContact contact) {
+    @Async
+    public CompletableFuture<GroupContact> setContact(GroupContact contact) {
         groupContactRepository.save(contact);
+        return CompletableFuture.completedFuture(groupContactRepository.getOne(contact.getGroupContactId()));
     }
 
-    public GroupContact updateContact(GroupContact contact, long id) {
+    @Async
+    public CompletableFuture<GroupContact> updateContact(GroupContact contact) {
         groupContactRepository.save(contact);
-        return groupContactRepository.getOne(id);
+        return CompletableFuture.completedFuture(groupContactRepository.getOne(contact.getGroupContactId()));
     }
 }

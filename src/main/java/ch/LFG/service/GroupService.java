@@ -2,9 +2,7 @@ package ch.LFG.service;
 
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
-
 import ch.LFG.repository.GroupRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -22,32 +20,40 @@ public class GroupService {
     private UserContactService userContactService;
 
     @Async
-    public Appgroup getGroupProfil(Appgroup group) {
-        return null; //groupRepository.findById(groupRepository.getOne(group));
+    public CompletableFuture<Appgroup> getGroupProfile(long groupId) {
+        return CompletableFuture.completedFuture(groupRepository.getOne(groupId));
     }
 
     @Async
-    public void setGroupProfil(Appgroup group) {
+    public CompletableFuture<Appgroup> setGroupProfile(Appgroup group) {
         groupRepository.save(group);
+        return CompletableFuture.completedFuture(groupRepository.getOne(group.getGroupId()));
     }
 
     @Async
-    public Appgroup updateGroupProfil(Appgroup group, long id) {
+    public CompletableFuture<Appgroup> updateGroupProfile(Appgroup group) {
         groupRepository.save(group);
-        return groupRepository.getOne(id);
+        return CompletableFuture.completedFuture(groupRepository.getOne(group.getGroupId()));
     }
 
     @Async
-    public void deleteGroupProfil(Appgroup group) {
+    public void deleteGroupProfile(Appgroup group) {
         groupRepository.delete(group);
     }
 
-    public List<Appuser> getPossibleMatches(Appgroup group) {
+    @Async
+    public CompletableFuture<List<Appuser>> getMatchSuggestions(long groupId) {
         return null;
     }
 
-    public List<Appuser> getMatches(Appgroup group) {
+    @Async
+    public CompletableFuture<List<Appuser>> getMyCurrentMatches(long groupId) {
         return null;
+    }
+
+    @Async
+    public void setMatchAnswer(long groupId, long userId, Boolean answer){
+
     }
 
 }

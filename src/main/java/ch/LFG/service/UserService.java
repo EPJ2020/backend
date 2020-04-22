@@ -4,8 +4,8 @@ import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
 
 import ch.LFG.repository.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -21,33 +21,41 @@ public class UserService {
     private MatcherService matchService;
     private GroupService groupService;
 
-    //nicht in modell
     @Async
-    public CompletableFuture<List<Appuser>> getAll(){
-        return CompletableFuture.completedFuture(userRepository.findAll());
+    public CompletableFuture<Appuser> getUserProfile(long id){
+        return CompletableFuture.completedFuture(userRepository.getOne(id));
     }
 
     @Async
-    public CompletableFuture<Appuser> getUserProfil(long id){ return CompletableFuture.completedFuture(userRepository.getOne(id));}
-
-    @Async
-    public void setUserProfil(Appuser user){ userRepository.save(user);}
-
-    public Appuser updateUserProfile(Appuser user, long id){ userRepository.save(user); return userRepository.getOne(id);}
-
-    @Async
-    public CompletableFuture<List<Appgroup>> getAllGroups(Appuser user) {
-        return null; //CompletableFuture.completedFuture(groupService.getPossibleMatches());
+    public CompletableFuture<Appuser> setUserProfile(Appuser user){
+        userRepository.save(user);
+        return CompletableFuture.completedFuture(userRepository.getOne(user.getUserId()));
     }
 
     @Async
-    public CompletableFuture<List<Appgroup>> getPossibleMatches(Appuser user) {
+    public CompletableFuture<Appuser> updateUserProfile(Appuser user, long id){
+        userRepository.save(user);
+        return CompletableFuture.completedFuture(userRepository.getOne(id));
+    }
+
+    @Async
+    public CompletableFuture<List<Appgroup>> getMyGroups(long userId) {
         return null;
     }
 
     @Async
-    public CompletableFuture<List<Appgroup>> getMatches(Appuser user) {
+    public CompletableFuture<List<Appgroup>> getMatchSuggestion(long userid) {
         return null;
+    }
+
+    @Async
+    public CompletableFuture<List<Appgroup>> getMyCurrentMatches(long userid) {
+        return null;
+    }
+
+    @Async
+    public void setMatchAnswer(long groupId, long userId, Boolean answer){
+
     }
 
 }
