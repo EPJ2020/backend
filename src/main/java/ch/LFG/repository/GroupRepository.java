@@ -4,5 +4,5 @@ import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Appuser, Long> {
+public interface GroupRepository extends JpaRepository<Appgroup, Long> {
 }

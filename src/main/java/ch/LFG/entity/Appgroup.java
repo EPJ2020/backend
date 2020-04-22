@@ -7,13 +7,11 @@ import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
-import java.util.List;
-
-@Entity(name = "Appuser")
-@Table(name = "appuser")
+@Proxy(lazy=false)
+@Entity(name = "Appgroup")
+@Table(name = "appgroup")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @TypeDefs({
         @TypeDef(
@@ -21,24 +19,18 @@ import java.util.List;
                 typeClass = StringArrayType.class
         )
 })
-public class Appuser {
+public class Appgroup {
 
     @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid")
-    private long userId;
+    @Column(name = "groupid")
+    private long groupId;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "ownerid", referencedColumnName = "userid")
-    List<Appgroup> groups;
+    @Column(name ="ownerid")
+    private long ownerId;
 
-    @Column(name = "lastname")
-    private String lastName;
-    @Column(name = "firstname")
-    private String firstName;
-
+    private String name;
     private String email;
     @Column(name ="phonenumber")
     private String phoneNumber;
@@ -53,14 +45,13 @@ public class Appuser {
     )
     private String[] tags;
 
-    public Appuser() {
+    public Appgroup() {
     }
 
-    public Appuser(long userId, List<Appgroup> groups, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
-        this.userId = userId;
-        this.groups = groups;
-        this.lastName = lastName;
-        this.firstName = firstName;
+    public Appgroup(long groupId, long ownerId, String name, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
+        this.groupId = groupId;
+        this.ownerId = ownerId;
+        this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.description = description;
@@ -68,36 +59,28 @@ public class Appuser {
         this.tags = tags;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getGroupId() {
+        return groupId;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
     }
 
-    public List<Appgroup> getGroups() {
-        return groups;
+    public long getOwnerId() {
+        return ownerId;
     }
 
-    public void setGroups(List<Appgroup> groups) {
-        this.groups = groups;
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
