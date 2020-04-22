@@ -28,29 +28,29 @@ public class GroupController {
 
     @Operation(summary = "Get group by id", description = "Get one group by his ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CompletableFuture<Appgroup> getGroupProfil(@PathVariable long groupId){
-        //return groupService.getGroupProfil(groupId);
+    public CompletableFuture<Appgroup> getGroupProfile(@PathVariable long groupId){
+        //return groupService.getGroupProfile(groupId);
         return null;
     }
 
     @Operation(summary = "Create new group", description = "Create new group")
     @RequestMapping( method = RequestMethod.POST)
-    public CompletableFuture<Appgroup> setGroupProfil(@RequestBody Appgroup group) {
-        //return groupService.setGroupProfil(group);
+    public CompletableFuture<Appgroup> setGroupProfile(@RequestBody Appgroup group) {
+        //return groupService.setGroupProfile(group);
         return null;
     }
 
     @Operation(summary = "Change group", description = "Change group")
     @RequestMapping( method = RequestMethod.PATCH)
-    public CompletableFuture<Appgroup> updateGroupProfil(@RequestBody Appgroup group) {
-        //groupService.updateGroupProfil(group);
+    public CompletableFuture<Appgroup> updateGroupProfile(@RequestBody Appgroup group) {
+        //groupService.updateGroupProfile(group);
         return null;
     }
 
     @Operation(summary = "Delete group", description = "Delete group")
     @RequestMapping( value="/{id}", method = RequestMethod.DELETE)
-    public CompletableFuture<Boolean> deleteGroupProfil(@PathVariable Long groupId) {
-        //groupService.updateGroupProfil(group);
+    public CompletableFuture<Boolean> deleteGroupProfile(@PathVariable Long groupId) {
+        //groupService.updateGroupProfile(group);
         return null;
     }
 

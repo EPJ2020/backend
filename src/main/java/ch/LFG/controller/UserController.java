@@ -34,21 +34,21 @@ public class UserController {
 
     @Operation(summary = "Get User by id", description = "Get one user by his ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public CompletableFuture<Appuser> getUserProfil(@PathVariable long id){
-        return userService.getUserProfil(id);
+    public CompletableFuture<Appuser> getUserProfile(@PathVariable long id){
+        return userService.getUserProfile(id);
     }
 
     @Operation(summary = "Create new User", description = "Create new User")
     @RequestMapping( method = RequestMethod.POST)
-    public CompletableFuture<Appuser> setUserProfil(@RequestBody Appuser user) {
-        //return userService.setUserProfil(user);
+    public CompletableFuture<Appuser> setUserProfile(@RequestBody Appuser user) {
+        //return userService.setUserProfile(user);
         return null;
     }
 
     @Operation(summary = "Change User", description = "Change User")
     @RequestMapping( method = RequestMethod.PATCH)
-    public CompletableFuture<Appuser> updateUserProfil(@RequestBody Appuser user) {
-        //userService.updateUserProfil(user);
+    public CompletableFuture<Appuser> updateUserProfile(@RequestBody Appuser user) {
+        //userService.updateUserProfile(user);
         return null;
     }
 
