@@ -34,8 +34,9 @@ public class UserController {
     }
 
     @Operation(summary = "Change User", description = "Change User")
-    @RequestMapping( method = RequestMethod.PATCH)
-    public Appuser updateUserProfile(@RequestBody Appuser user) {
+    @RequestMapping( value="/update{id}", method = RequestMethod.PATCH)
+    public Appuser updateUserProfile(@RequestBody Appuser user, @PathVariable long id) {
+        user.setUserId(id);
         return userService.updateUserProfile(user);
     }
 

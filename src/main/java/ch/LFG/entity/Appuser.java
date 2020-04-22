@@ -23,6 +23,7 @@ import java.util.List;
 })
 public class Appuser {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")
@@ -32,11 +33,6 @@ public class Appuser {
     @OneToMany
     @JoinColumn(name = "ownerid", referencedColumnName = "userid")
     List<Appgroup> groups;
-
-    @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "loginid")
-    private Userlogin login;
 
     @Column(name = "lastname")
     private String lastName;
@@ -60,10 +56,9 @@ public class Appuser {
     public Appuser() {
     }
 
-    public Appuser(long userId, List<Appgroup> groups, Userlogin login, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
+    public Appuser(long userId, List<Appgroup> groups, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
         this.userId = userId;
         this.groups = groups;
-        this.login = login;
         this.lastName = lastName;
         this.firstName = firstName;
         this.email = email;
@@ -87,14 +82,6 @@ public class Appuser {
 
     public void setGroups(List<Appgroup> groups) {
         this.groups = groups;
-    }
-
-    public Userlogin getLogin() {
-        return login;
-    }
-
-    public void setLogin(Userlogin login) {
-        this.login = login;
     }
 
     public String getLastName() {

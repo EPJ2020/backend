@@ -1,5 +1,6 @@
 package ch.LFG.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import org.hibernate.annotations.Proxy;
@@ -20,6 +21,7 @@ import javax.persistence.*;
 })
 public class Appgroup {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "groupid")

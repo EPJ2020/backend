@@ -19,8 +19,8 @@ public class GroupController {
     //further commands see https://github.com/swagger-api/swagger-core/wiki/Swagger-2.X---Annotations#OpenAPIDefinition
     @Operation(summary = "Get group by id", description = "Get one group by his ID")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Appgroup getGroupProfile(@PathVariable long groupId){
-        return groupService.getGroupProfile(groupId);
+    public Appgroup getGroupProfile(@PathVariable long id){
+        return groupService.getGroupProfile(id);
     }
 
     @Operation(summary = "Create new group", description = "Create new group")
@@ -30,27 +30,28 @@ public class GroupController {
     }
 
     @Operation(summary = "Change group", description = "Change group")
-    @RequestMapping( method = RequestMethod.PATCH)
-    public Appgroup updateGroupProfile(@RequestBody Appgroup group) {
+    @RequestMapping( value="/update/{id}", method = RequestMethod.PATCH)
+    public Appgroup updateGroupProfile(@RequestBody Appgroup group, @PathVariable long id) {
+        group.setGroupId(id);
         return groupService.updateGroupProfile(group);
     }
 
     @Operation(summary = "Delete group", description = "Delete group")
     @RequestMapping( value="/{id}", method = RequestMethod.DELETE)
-    public Boolean deleteGroupProfile(@PathVariable Long groupId) {
-        return groupService.deleteGroupProfile(groupId);
+    public Boolean deleteGroupProfile(@PathVariable long id) {
+        return groupService.deleteGroupProfile(id);
     }
 
     @Operation(summary = "Get Match suggestions for group", description = "Get Match Suggestions of a group by his group")
     @RequestMapping(value="/Suggestions/{id}", method = RequestMethod.GET)
-    public List<Appuser> getMatchSuggestions(@PathVariable Long groupId) {
-        return groupService.getMatchSuggestions(groupId);
+    public List<Appuser> getMatchSuggestions(@PathVariable long id) {
+        return groupService.getMatchSuggestions(id);
     }
 
     @Operation(summary = "Get Matches of group", description = "Get the Matches of a group by his groupId, where group and Group swiped yes")
     @RequestMapping(value="/Matches/{id}", method = RequestMethod.GET)
-    public List<Appuser> getMyCurrentMatches(@PathVariable Long groupId) {
-        return groupService.getMyCurrentMatches(groupId);
+    public List<Appuser> getMyCurrentMatches(@PathVariable long id) {
+        return groupService.getMyCurrentMatches(id);
     }
 
     @Operation(summary = "Match Answer", description = "Give the answer for a proposed match")
