@@ -2,12 +2,13 @@ package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
+import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
-
+@Proxy(lazy=false)
 @Entity(name = "Appgroup")
 @Table(name = "appgroup")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -24,11 +25,13 @@ public class Appgroup {
     @Column(name = "groupid")
     private long groupId;
 
-    @ManyToOne
-    @JoinColumn(name = "ownerid")
-    private Appuser owner;
+    @Column(name ="ownerid")
+    private long ownerId;
 
     private String name;
+    private String email;
+    @Column(name ="phonenumber")
+    private String phoneNumber;
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
@@ -43,23 +46,56 @@ public class Appgroup {
     public Appgroup() {
     }
 
-    public long getGroupId() { return groupId; }
-
-    public void setGroupId(long groupId) { this.groupId = groupId; }
-
-    public Appuser getOwner() {
-        return owner;
+    public Appgroup(long groupId, long ownerId, String name, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
+        this.groupId = groupId;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.description = description;
+        this.isActive = isActive;
+        this.tags = tags;
     }
 
-    public void setOwner(Appuser owner) {
-        this.owner = owner;
+    public long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
+
+    public long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getDescription() {
         return description;
@@ -82,7 +118,6 @@ public class Appgroup {
     }
 
     public void setTags(String[] tags) {
-        this.tags=tags;
+        this.tags = tags;
     }
-
 }

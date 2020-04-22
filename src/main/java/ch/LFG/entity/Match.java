@@ -1,9 +1,11 @@
 package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 
+@Proxy(lazy = false)
 @Entity(name = "Match")
 @Table(name = "match")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

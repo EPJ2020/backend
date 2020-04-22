@@ -1,12 +1,16 @@
 package ch.LFG.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
+import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
+import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "Appuser")
 @Table(name = "appuser")
@@ -24,6 +28,12 @@ public class Appuser {
     @Column(name = "userid")
     private long userId;
 
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name = "ownerid", referencedColumnName = "userid")
+    List<Appgroup> groups;
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "loginid")
     private Userlogin login;
@@ -32,6 +42,10 @@ public class Appuser {
     private String lastName;
     @Column(name = "firstname")
     private String firstName;
+
+    private String email;
+    @Column(name ="phonenumber")
+    private String phoneNumber;
     private String description;
     @Column(name = "isactive")
     private Boolean isActive;
@@ -46,11 +60,14 @@ public class Appuser {
     public Appuser() {
     }
 
-    public Appuser(long userId, Userlogin login, String lastName, String firstName, String description, Boolean isActive, String[] tags) {
+    public Appuser(long userId, List<Appgroup> groups, Userlogin login, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
         this.userId = userId;
+        this.groups = groups;
         this.login = login;
         this.lastName = lastName;
         this.firstName = firstName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.description = description;
         this.isActive = isActive;
         this.tags = tags;
@@ -62,6 +79,14 @@ public class Appuser {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public List<Appgroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Appgroup> groups) {
+        this.groups = groups;
     }
 
     public Userlogin getLogin() {
@@ -86,6 +111,22 @@ public class Appuser {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDescription() {

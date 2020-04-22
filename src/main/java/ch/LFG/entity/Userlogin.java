@@ -1,9 +1,9 @@
 package ch.LFG.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-
 
 @Entity(name = "Userlogin")
 @Table(name = "userlogin")
