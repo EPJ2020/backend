@@ -3,6 +3,7 @@ package ch.LFG.service;
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
 import ch.LFG.repository.GroupRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
