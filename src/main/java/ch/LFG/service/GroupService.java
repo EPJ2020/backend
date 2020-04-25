@@ -56,4 +56,8 @@ public class GroupService {
         return null;
     }
 
+    public List<Appgroup> getAllGroups(){
+        return groupRepository.findAll();
+    }
+
 }
