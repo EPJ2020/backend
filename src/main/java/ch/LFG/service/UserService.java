@@ -7,6 +7,7 @@ import ch.LFG.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,7 +16,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private MatcherService matcherService;
+
+    @Autowired
     private GroupService groupService;
 
     
@@ -43,12 +47,12 @@ public class UserService {
 
     
     public List<Appgroup> getMatchSuggestion(long userid) {
-        return null;
+        return matcherService.calculateSuggestions(userRepository.getOne(userid));
+
     }
 
-    
     public List<Appgroup> getMyCurrentMatches(long userid) {
-        return null;
+        return matcherService.getMyCurrentMatchesForUser(userid);
     }
 
     

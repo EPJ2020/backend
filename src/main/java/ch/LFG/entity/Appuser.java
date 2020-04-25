@@ -56,6 +56,8 @@ public class Appuser {
     public Appuser() {
     }
 
+
+
     public Appuser(long userId, List<Appgroup> groups, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
         this.userId = userId;
         this.groups = groups;

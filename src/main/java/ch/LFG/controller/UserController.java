@@ -48,22 +48,20 @@ public class UserController {
 
     @Operation(summary = "Get Match suggestions for User", description = "Get Match Suggestions of a User by his userId")
     @RequestMapping(value="/Suggestions/{id}", method = RequestMethod.GET)
-    public List<Appgroup> getMatchSuggestions(@PathVariable Long userId) {
-        //return userService.getMatchSuggestions(userId);
-        return null;
+    public List<Appgroup> getMatchSuggestions(@PathVariable Long id) {
+        return userService.getMatchSuggestion(id);
     }
 
     @Operation(summary = "Get Matches of User", description = "Get the Matches of a User by his userId, where User and Group swiped yes")
     @RequestMapping(value="/Matches/{id}", method = RequestMethod.GET)
-    public List<Appgroup> getMyCurrentMatches(@PathVariable Long userId) {
-        //return userService.getMyCurrentMatches(userId);
-        return null;
+    public List<Appgroup> getMyCurrentMatches(@PathVariable long id) {
+        return userService.getMyCurrentMatches(id);
     }
 
     @Operation(summary = "Match Answer", description = "Give the answer for a proposed match")
     @RequestMapping(value="/MatchesAnswer/{id}", method = RequestMethod.POST)
-    public List<Appgroup> matchAnswer(@RequestBody Long userId, Long groupId, Boolean answer ) {
-        //return userService.matchAnswer(userId, groupId, answer);
+    public List<Appgroup> matchAnswer(@RequestBody Long id, Long groupId, Boolean answer ) {
+        //return userService.matchAnswer(id, groupId, answer);
         return null;
     }
 

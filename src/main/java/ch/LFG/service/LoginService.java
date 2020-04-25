@@ -12,6 +12,8 @@ public class LoginService {
 
     @Autowired
     private LoginRepository loginRepository;
+
+    @Autowired
     private UserService userService;
 
     public void createUserLogin(Userlogin login) {

@@ -15,6 +15,7 @@ public class GroupService {
     @Autowired
     private GroupRepository groupRepository;
 
+    @Autowired
     private MatcherService matcherService;
 
     public Appgroup getGroupProfile(long groupId) {
@@ -47,8 +48,8 @@ public class GroupService {
         return null;
     }
 
-    public List<Appuser> getMyCurrentMatches(long groupId) {
-        return null;
+    public List<Appuser> getMyCurrentMatches(long id) {
+        return matcherService.getMyCurrentMatchesForGroup(id);
     }
 
     public Boolean setMatchAnswer(long groupId, long userId, Boolean answer){
