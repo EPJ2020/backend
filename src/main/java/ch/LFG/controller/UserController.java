@@ -2,9 +2,12 @@ package ch.LFG.controller;
 
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
+import ch.LFG.entity.MatchAnswer;
 import ch.LFG.entity.Userlogin;
 import ch.LFG.service.LoginService;
 import ch.LFG.service.UserService;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sun.xml.bind.v2.TODO;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,13 +33,15 @@ public class UserController {
     @Operation(summary = "Create new User", description = "Create new User")
     @RequestMapping( method = RequestMethod.POST)
     public Appuser setUserProfile(@RequestBody Appuser user) {
+        // TODO Issue 90: ID should get set from frontend (loginid)
+        user.setUserId(1337);
         return userService.setUserProfile(user);
     }
 
     @Operation(summary = "Change User", description = "Change User")
-    @RequestMapping( value="/update{id}", method = RequestMethod.PATCH)
-    public Appuser updateUserProfile(@RequestBody Appuser user, @PathVariable long id) {
-        user.setUserId(id);
+    @RequestMapping( value="/update", method = RequestMethod.PATCH)
+    public Appuser updateUserProfile(@RequestBody Appuser user) {
+
         return userService.updateUserProfile(user);
     }
 
@@ -48,23 +53,25 @@ public class UserController {
 
     @Operation(summary = "Get Match suggestions for User", description = "Get Match Suggestions of a User by his userId")
     @RequestMapping(value="/Suggestions/{id}", method = RequestMethod.GET)
-    public List<Appgroup> getMatchSuggestions(@PathVariable Long userId) {
-        //return userService.getMatchSuggestions(userId);
-        return null;
+    public List<Appgroup> getMatchSuggestions(@PathVariable Long id) {
+        return userService.getMatchSuggestion(id);
     }
 
     @Operation(summary = "Get Matches of User", description = "Get the Matches of a User by his userId, where User and Group swiped yes")
     @RequestMapping(value="/Matches/{id}", method = RequestMethod.GET)
-    public List<Appgroup> getMyCurrentMatches(@PathVariable Long userId) {
-        //return userService.getMyCurrentMatches(userId);
-        return null;
+    public List<Appgroup> getMyCurrentMatches(@PathVariable long id) {
+        return userService.getMyCurrentMatches(id);
     }
 
     @Operation(summary = "Match Answer", description = "Give the answer for a proposed match")
-    @RequestMapping(value="/MatchesAnswer/{id}", method = RequestMethod.POST)
-    public List<Appgroup> matchAnswer(@RequestBody Long userId, Long groupId, Boolean answer ) {
-        //return userService.matchAnswer(userId, groupId, answer);
-        return null;
+    @RequestMapping(value="/MatchesAnswer/", method = RequestMethod.POST)
+    public Boolean matchAnswer(@RequestBody MatchAnswer match) {
+        try {
+            userService.setMatchAnswer(match);
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     @Operation(summary = "Create new Login", description = "Create new Login")

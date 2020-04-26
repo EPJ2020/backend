@@ -32,6 +32,13 @@ public class Match {
     public Match() {
     }
 
+    public Match(Appuser user, Appgroup group, Boolean groupAccept, Boolean userAccept) {
+        this.user = user;
+        this.group = group;
+        this.groupAccept = groupAccept;
+        this.userAccept = userAccept;
+    }
+
     public Match(long matchId, Appuser user, Appgroup group, Boolean groupAccept, Boolean userAccept) {
         this.matchId = matchId;
         this.user = user;
