@@ -2,8 +2,11 @@ package ch.LFG.controller;
 
 import ch.LFG.entity.Appgroup;
 import ch.LFG.entity.Appuser;
+import ch.LFG.entity.Match;
+import ch.LFG.entity.MatchAnswer;
 import ch.LFG.service.GroupService;
 import io.swagger.v3.oas.annotations.Operation;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +29,15 @@ public class GroupController {
     @Operation(summary = "Create new group", description = "Create new group")
     @RequestMapping( method = RequestMethod.POST)
     public Appgroup setGroupProfile(@RequestBody Appgroup group) {
+        // TODO Issue 90: ID should get set from frontend (loginid)
+        group.setGroupId(1337);
         return groupService.setGroupProfile(group);
     }
 
     @Operation(summary = "Change group", description = "Change group")
-    @RequestMapping( value="/update/{id}", method = RequestMethod.PATCH)
-    public Appgroup updateGroupProfile(@RequestBody Appgroup group, @PathVariable long id) {
-        group.setGroupId(id);
+    @RequestMapping( value="/update", method = RequestMethod.PATCH)
+    public Appgroup updateGroupProfile(@RequestBody Appgroup group) {
+
         return groupService.updateGroupProfile(group);
     }
 
@@ -55,9 +60,14 @@ public class GroupController {
     }
 
     @Operation(summary = "Match Answer", description = "Give the answer for a proposed match")
-    @RequestMapping(value="/MatchesAnswer/{id}", method = RequestMethod.POST)
-    public Boolean matchAnswer(@RequestBody Long userId, Long groupId, Boolean answer ) {
-        return groupService.setMatchAnswer(userId, groupId, answer);
+    @RequestMapping(value="/MatchesAnswer", method = RequestMethod.POST)
+    public Boolean matchAnswer(@RequestBody MatchAnswer match ) {
+        try {
+            return groupService.setMatchAnswer(match);
+        }
+        catch(Exception e) {
+            return false;
+        }
     }
 
 }

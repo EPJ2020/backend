@@ -23,7 +23,6 @@ import java.util.List;
 })
 public class Appuser {
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")

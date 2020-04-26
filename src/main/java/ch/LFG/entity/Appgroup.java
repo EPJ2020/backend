@@ -21,7 +21,6 @@ import javax.persistence.*;
 })
 public class Appgroup {
 
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "groupid")
