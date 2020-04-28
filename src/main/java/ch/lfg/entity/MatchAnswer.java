@@ -1,34 +1,34 @@
 package ch.lfg.entity;
 
 public class MatchAnswer {
-    private long userId;
-    private long groupId;
-    private Boolean answer;
+  private long userId;
+  private long groupId;
+  private Boolean answer;
 
-    public MatchAnswer() {
-    }
+  public MatchAnswer() {
+  }
 
-    public long getUserId() {
-        return userId;
-    }
+  public long getUserId() {
+    return userId;
+  }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+  public void setUserId(long userId) {
+    this.userId = userId;
+  }
 
-    public long getGroupId() {
-        return groupId;
-    }
+  public long getGroupId() {
+    return groupId;
+  }
 
-    public void setGroupId(long groupId) {
-        this.groupId = groupId;
-    }
+  public void setGroupId(long groupId) {
+    this.groupId = groupId;
+  }
 
-    public Boolean getAnswer() {
-        return answer;
-    }
+  public Boolean getAnswer() {
+    return answer;
+  }
 
-    public void setAnswer(Boolean answer) {
-        this.answer = answer;
-    }
+  public void setAnswer(Boolean answer) {
+    this.answer = answer;
+  }
 }

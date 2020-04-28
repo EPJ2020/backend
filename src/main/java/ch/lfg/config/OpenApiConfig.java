@@ -11,11 +11,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .components(new Components())
-                .info(new Info().title("EPJ-LFG API").description(
-                        "This is a API created for the LFG project"));
-    }
+  @Bean
+  public OpenAPI customOpenApi() {
+    return new OpenAPI()
+      .components(new Components())
+      .info(new Info().title("EPJ-LFG API").description(
+        "This is a API created for the LFG project"));
+  }
 }
