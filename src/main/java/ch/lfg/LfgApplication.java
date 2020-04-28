@@ -1,4 +1,4 @@
-package ch.LFG;
+package ch.lfg;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

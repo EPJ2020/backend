@@ -1,19 +1,15 @@
-package ch.LFG.service;
+package ch.lfg.service;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.repository.GroupRepository;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.repository.GroupRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import static org.junit.Assert.assertThat;
-import static org.mockito.BDDMockito.given;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doThrow;

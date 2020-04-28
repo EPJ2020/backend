@@ -1,14 +1,11 @@
-package ch.LFG.service;
+package ch.lfg.service;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.Match;
-import ch.LFG.repository.MatchRepository;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.Match;
+import ch.lfg.repository.MatchRepository;
 
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;

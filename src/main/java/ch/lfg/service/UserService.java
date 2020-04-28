@@ -1,14 +1,13 @@
-package ch.LFG.service;
+package ch.lfg.service;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.MatchAnswer;
-import ch.LFG.repository.UserRepository;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.MatchAnswer;
+import ch.lfg.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

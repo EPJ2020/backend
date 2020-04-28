@@ -1,9 +1,9 @@
-package ch.LFG.service;
+package ch.lfg.service;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.MatchAnswer;
-import ch.LFG.repository.GroupRepository;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.MatchAnswer;
+import ch.lfg.repository.GroupRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

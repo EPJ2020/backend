@@ -1,6 +1,5 @@
-package ch.LFG.entity;
+package ch.lfg.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import org.hibernate.annotations.Proxy;

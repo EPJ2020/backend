@@ -1,4 +1,4 @@
-package ch.LFG.entity;
+package ch.lfg.entity;
 
 public class MatchAnswer {
     private long userId;

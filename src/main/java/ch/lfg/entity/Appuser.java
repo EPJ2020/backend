@@ -1,13 +1,11 @@
-package ch.LFG.entity;
+package ch.lfg.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
-import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.hibernate.mapping.Collection;
 
 import javax.persistence.*;
 import java.util.List;

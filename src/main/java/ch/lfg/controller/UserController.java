@@ -1,13 +1,11 @@
-package ch.LFG.controller;
+package ch.lfg.controller;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.MatchAnswer;
-import ch.LFG.entity.Userlogin;
-import ch.LFG.service.LoginService;
-import ch.LFG.service.UserService;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.sun.xml.bind.v2.TODO;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.MatchAnswer;
+import ch.lfg.entity.Userlogin;
+import ch.lfg.service.LoginService;
+import ch.lfg.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

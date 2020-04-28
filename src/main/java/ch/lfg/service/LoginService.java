@@ -1,8 +1,8 @@
-package ch.LFG.service;
+package ch.lfg.service;
 
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.Userlogin;
-import ch.LFG.repository.LoginRepository;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.Userlogin;
+import ch.lfg.repository.LoginRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

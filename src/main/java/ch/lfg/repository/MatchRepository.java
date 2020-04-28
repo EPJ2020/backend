@@ -1,6 +1,6 @@
-package ch.LFG.repository;
+package ch.lfg.repository;
 
-import ch.LFG.entity.Match;
+import ch.lfg.entity.Match;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;

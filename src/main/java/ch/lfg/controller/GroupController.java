@@ -1,12 +1,10 @@
-package ch.LFG.controller;
+package ch.lfg.controller;
 
-import ch.LFG.entity.Appgroup;
-import ch.LFG.entity.Appuser;
-import ch.LFG.entity.Match;
-import ch.LFG.entity.MatchAnswer;
-import ch.LFG.service.GroupService;
+import ch.lfg.entity.Appgroup;
+import ch.lfg.entity.Appuser;
+import ch.lfg.entity.MatchAnswer;
+import ch.lfg.service.GroupService;
 import io.swagger.v3.oas.annotations.Operation;
-import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

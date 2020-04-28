@@ -1,6 +1,6 @@
-package ch.LFG.repository;
+package ch.lfg.repository;
 
-import ch.LFG.entity.Appuser;
+import ch.lfg.entity.Appuser;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.QueryByExampleExecutor;

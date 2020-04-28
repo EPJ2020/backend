@@ -1,4 +1,4 @@
-package ch.LFG.config;
+package ch.lfg.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
