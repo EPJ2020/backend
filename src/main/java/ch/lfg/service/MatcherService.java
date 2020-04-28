@@ -5,6 +5,7 @@ import ch.lfg.entity.Appuser;
 import ch.lfg.entity.Match;
 import ch.lfg.repository.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import java.security.InvalidParameterException;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
 public class MatcherService {
 
   @Autowired
-  private MatchRepository matchRepository;
+  private JpaRepository<Match, Long> matchRepository;
 
   @Autowired
   private UserService userService;

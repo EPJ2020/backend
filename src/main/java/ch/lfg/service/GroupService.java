@@ -5,6 +5,7 @@ import ch.lfg.entity.Appuser;
 import ch.lfg.entity.MatchAnswer;
 import ch.lfg.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class GroupService {
 
   @Autowired
-  private GroupRepository groupRepository;
+  private JpaRepository<Appgroup, Long> groupRepository;
 
   @Autowired
   private MatcherService matcherService;

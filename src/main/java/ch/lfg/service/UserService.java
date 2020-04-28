@@ -5,6 +5,7 @@ import ch.lfg.entity.Appuser;
 import ch.lfg.entity.MatchAnswer;
 import ch.lfg.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class UserService {
 
   @Autowired
-  private UserRepository userRepository;
+  private JpaRepository<Appuser, Long> userRepository;
 
   @Autowired
   private MatcherService matcherService;
