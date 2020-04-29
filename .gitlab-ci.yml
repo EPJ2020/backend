@@ -6,9 +6,6 @@ stages:
   - build
   - deploy
 
-include:
-  - template: Code-Quality.gitlab-ci.yml
-
 test:
   stage: test
   script: mvn test
@@ -30,9 +27,12 @@ code_coverage:
     
 code_quality:
   stage: code_quality
+  script:
+    - mvn checkstyle:checkstyle
+    - cat target/checkstyle-result.xml
   artifacts:
-    paths: [gl-code-quality-report.json]
-
+    paths:
+      - target/checkstyle-result.xml
 
 maven_build:
   stage: build
