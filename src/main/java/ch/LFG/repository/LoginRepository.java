@@ -1,9 +1,16 @@
-package ch.LFG.repository;
+package ch.lfg.repository;
 
-import ch.LFG.entity.Userlogin;
-
+import ch.lfg.entity.Userlogin;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
 
-public interface LoginRepository extends JpaRepository<Userlogin, Long>, QueryByExampleExecutor<Userlogin> {
+/**
+ * This is the JPArepository abstraction with CRUD methods that are getting translated into Database queries.
+ */
+public interface LoginRepository extends JpaRepository<Userlogin, Long> {
+
+  /**
+   * @param username Expects a username in String format
+   * @return Returns a UserLogin Object with the given username
+   */
+  Userlogin findByUsername(String username);
 }

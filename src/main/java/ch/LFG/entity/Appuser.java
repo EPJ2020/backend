@@ -1,4 +1,4 @@
-package ch.LFG.entity;
+package ch.lfg.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,135 +7,188 @@ import org.hibernate.annotations.Proxy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-import org.hibernate.mapping.Collection;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.util.List;
 
+/**
+ * Represents a User of the application
+ */
+@Proxy(lazy = false)
 @Entity(name = "Appuser")
 @Table(name = "appuser")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @TypeDefs({
-        @TypeDef(
-                name = "string-array",
-                typeClass = StringArrayType.class
-        )
+    @TypeDef(
+        name = "string-array",
+        typeClass = StringArrayType.class
+    )
 })
 public class Appuser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userid")
-    private long userId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "userid")
+  private long userId;
 
-    @JsonIgnore
-    @OneToMany
-    @JoinColumn(name = "ownerid", referencedColumnName = "userid")
-    List<Appgroup> groups;
+  @Column(name = "loginid")
+  @JsonIgnore
+  private long loginId;
 
-    @Column(name = "lastname")
-    private String lastName;
-    @Column(name = "firstname")
-    private String firstName;
+  @JsonIgnore
+  @OneToMany
+  @JoinColumn(name = "ownerid", referencedColumnName = "userid")
+  List<Appgroup> groups;
 
-    private String email;
-    @Column(name ="phonenumber")
-    private String phoneNumber;
-    private String description;
-    @Column(name = "isactive")
-    private Boolean isActive;
+  @Column(name = "lastname")
+  private String lastName;
+  @Column(name = "firstname")
+  private String firstName;
 
-    @Type(type = "string-array")
-    @Column(
-            name = "tags",
-            columnDefinition = "text[]"
-    )
-    private String[] tags;
+  private String email;
+  @Column(name = "phonenumber")
+  private String phoneNumber;
+  private String description;
+  @Column(name = "isactive")
+  private Boolean isActive;
+  private Integer age;
+  private String sex;
 
-    public Appuser() {
-    }
+  @Type(type = "string-array")
+  @Column(
+      name = "tags",
+      columnDefinition = "text[]"
+  )
+  private String[] tags;
 
-    public Appuser(long userId, List<Appgroup> groups, String lastName, String firstName, String email, String phoneNumber, String description, Boolean isActive, String[] tags) {
-        this.userId = userId;
-        this.groups = groups;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.description = description;
-        this.isActive = isActive;
-        this.tags = tags;
-    }
+  public Appuser() {
+  }
 
-    public long getUserId() {
-        return userId;
-    }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+  public Appuser(long userId,
+                 long loginId,
+                 String lastName,
+                 String firstName,
+                 String email,
+                 String phoneNumber,
+                 String description,
+                 Boolean isActive,
+                 Integer age,
+                 String sex,
+                 String[] tags) {
+    this.userId = userId;
+    //this.loginId = loginId;
+    this.groups = groups;
+    this.lastName = lastName;
+    this.firstName = firstName;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+    this.description = description;
+    this.isActive = isActive;
+    this.age = age;
+    this.sex = sex;
+    this.tags = tags;
+  }
 
-    public List<Appgroup> getGroups() {
-        return groups;
-    }
+  public long getUserId() {
+    return userId;
+  }
 
-    public void setGroups(List<Appgroup> groups) {
-        this.groups = groups;
-    }
+  public void setUserId(long userId) {
+    this.userId = userId;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public long getLoginId() {
+    return loginId;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setLoginId(long loginId) {
+    this.loginId = loginId;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public List<Appgroup> getGroups() {
+    return groups;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setGroups(List<Appgroup> groups) {
+    this.groups = groups;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public Boolean getActive() {
-        return isActive;
-    }
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
 
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
-    public String[] getTags() {
-        return tags;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public void setTags(String[] tags) {
-        this.tags = tags;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Boolean getActive() {
+    return isActive;
+  }
+
+  public void setActive(Boolean active) {
+    isActive = active;
+  }
+
+  public String[] getTags() {
+    return tags;
+  }
+
+  public void setTags(String[] tags) {
+    this.tags = tags;
+  }
+
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  public String getSex() {
+    return sex;
+  }
+
+  public void setSex(String sex) {
+    this.sex = sex;
+  }
 }

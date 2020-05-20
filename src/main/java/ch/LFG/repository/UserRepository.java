@@ -1,9 +1,19 @@
-package ch.LFG.repository;
+package ch.lfg.repository;
 
-import ch.LFG.entity.Appuser;
-
+import ch.lfg.entity.Appuser;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
+import org.springframework.data.jpa.repository.Query;
 
-public interface UserRepository extends JpaRepository<Appuser, Long>, QueryByExampleExecutor<Appuser> {
+/**
+ * This is the JPArepository abstraction with CRUD methods that are getting translated into Database queries.
+ */
+public interface UserRepository extends JpaRepository<Appuser, Long> {
+
+  /**
+   * @param id Database identifier of the login object for which we want a appuser object
+   * @return Returns an appuserobject with the specified loginid as foreignkey.
+   */
+  @Query("SELECT a FROM Appuser a WHERE a.loginId = ?1")
+  Appuser getUserByLoginId(long id);
+
 }
