@@ -1,0 +1,53 @@
+image: maven:3-jdk-11
+
+stages:
+  - test
+  - code_quality
+  - build
+  - deploy
+
+test:
+  stage: test
+  script: mvn test
+  artifacts:
+    paths:
+      - target/surefire-reports/TEST-*.xml
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+code_coverage:
+  stage: code_quality
+  script: 
+    - mvn package
+    - cat target/site/jacoco/index.html
+  artifacts:
+    paths:
+      - target/site/jacoco/
+    
+code_quality:
+  stage: code_quality
+  script:
+    - mvn checkstyle:checkstyle
+    - cat target/checkstyle-result.xml
+  artifacts:
+    paths:
+      - target/checkstyle-result.xml
+
+maven_build:
+  stage: build
+  script: "mvn package -B"
+  only:
+    - master
+  artifacts:
+    paths:
+      - target/*.jar
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - sudo systemctl stop lfg.service
+    - sudo cp -rf target/LFG-0.0.1-SNAPSHOT.jar /usr/bin/
+    - sudo systemctl start lfg.service
